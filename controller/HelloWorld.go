@@ -5,6 +5,7 @@ import (
 	"HelloWorld/io/network/route"
 	"HelloWorld/io/network/socket/connect"
 	"fmt"
+	"log"
 )
 
 func init() {
@@ -17,11 +18,11 @@ func init() {
 func HelloWorld(world packet.HelloWorld, conn *connect.Connector) {
 	fmt.Println("请输入姓名")
 	var name string
-	//_, err := fmt.Scanln(&name)
-	//if err != nil {
-	//	log.Fatal("输入失败")
-	//}
-	name = "张三"
+	_, err := fmt.Scanln(&name)
+	if err != nil {
+		log.Fatal("输入失败")
+	}
+	//name = "张三2"
 	conn.Send(packet.Login{Username: name, Password: "123456"})
 }
 
@@ -34,14 +35,13 @@ func LoginSuccess(token packet.Token, conn *connect.Connector) {
 
 }
 func LoginFail(fail packet.LoginFail, conn *connect.Connector) {
-	fmt.Println("登录失败：", fail.Message)
+	fmt.Println("登录失败：", fail.Message, fail.Code)
 	fmt.Println("请输入姓名")
 	var name string
-	//_, err := fmt.Scanln(&name)
-	//if err != nil {
-	//	log.Fatal("输入失败")
-	//}
-	name = "张三"
+	_, err := fmt.Scanln(&name)
+	if err != nil {
+		log.Fatal("输入失败")
+	}
 	conn.Send(packet.Login{Username: name, Password: "123456"})
 }
 
