@@ -6,6 +6,7 @@ import (
 	"HelloWorldServer/packet"
 	"fmt"
 	"log"
+	"time"
 )
 
 func init() {
@@ -13,10 +14,13 @@ func init() {
 	route.Register(packet.Token{}, LoginSuccess)
 	route.Register(packet.LoginFail{}, LoginFail)
 	route.Register(packet.UserList{}, UserList)
+	route.Register(packet.GlobalMessage{}, GlobalMessage)
+	route.Register(packet.Logout{}, UserLogout)
+	route.Register(packet.NewUser{}, NewUserOnline)
 }
 
 func HelloWorld(world packet.HelloWorld, conn *connect.Connector) {
-	fmt.Println("请输入姓名")
+	fmt.Println("请输入昵称")
 	var name string
 	_, err := fmt.Scanln(&name)
 	if err != nil {
@@ -36,7 +40,7 @@ func LoginSuccess(token packet.Token, conn *connect.Connector) {
 }
 func LoginFail(fail packet.LoginFail, conn *connect.Connector) {
 	fmt.Println("登录失败：", fail.Message, fail.Code)
-	fmt.Println("请输入姓名")
+	fmt.Println("请输入昵称:")
 	var name string
 	_, err := fmt.Scanln(&name)
 	if err != nil {
@@ -51,4 +55,28 @@ func UserList(list packet.UserList, conn *connect.Connector) {
 	fmt.Println("打印用户列表：")
 	fmt.Println(list)
 
+	for {
+		fmt.Println("输入消息：")
+		var message string
+		_, err := fmt.Scanln(&message)
+		if err != nil {
+			fmt.Println("输入失败")
+			continue
+		}
+		conn.Send(packet.Message{Content: message})
+	}
+
+}
+
+func GlobalMessage(message packet.GlobalMessage, conn *connect.Connector) {
+	fmt.Println(message.Nickname, ":", message.Content)
+	fmt.Println(message.User, time.Unix(message.User.LoginTime, 0))
+}
+
+func UserLogout(logout packet.Logout, conn *connect.Connector) {
+	fmt.Printf("用户%s离开了服务器\n", logout.Nickname)
+}
+
+func NewUserOnline(user packet.NewUser, conn *connect.Connector) {
+	fmt.Println("掌声欢迎 “", user.Nickname, "” 上线")
 }
