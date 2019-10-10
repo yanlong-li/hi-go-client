@@ -1,9 +1,9 @@
 package controller
 
 import (
-	"HelloWorld/io/network/packet"
 	"HelloWorld/io/network/route"
 	"HelloWorld/io/network/socket/connect"
+	"HelloWorldServer/packet"
 	"fmt"
 	"log"
 )
@@ -45,8 +45,10 @@ func LoginFail(fail packet.LoginFail, conn *connect.Connector) {
 	conn.Send(packet.Login{Username: name, Password: "123456"})
 }
 
+// 用户列表
 func UserList(list packet.UserList, conn *connect.Connector) {
 
+	fmt.Println("打印用户列表：")
 	fmt.Println(list)
 
 }
