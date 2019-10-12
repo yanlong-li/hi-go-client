@@ -6,7 +6,6 @@ import (
 	"HelloWorldServer/packet"
 	"fmt"
 	"log"
-	"time"
 )
 
 func init() {
@@ -55,8 +54,8 @@ func UserList(list packet.UserList, conn *connect.Connector) {
 	fmt.Println("打印用户列表：")
 	fmt.Println(list)
 
+	fmt.Println("输入消息：")
 	for {
-		fmt.Println("输入消息：")
 		var message string
 		_, err := fmt.Scanln(&message)
 		if err != nil {
@@ -70,7 +69,7 @@ func UserList(list packet.UserList, conn *connect.Connector) {
 
 func GlobalMessage(message packet.GlobalMessage, conn *connect.Connector) {
 	fmt.Println(message.Nickname, ":", message.Content)
-	fmt.Println(message.User, time.Unix(message.User.LoginTime, 0))
+	//fmt.Println(message.User, time.Unix(message.User.LoginTime, 0))
 }
 
 func UserLogout(logout packet.Logout, conn *connect.Connector) {
