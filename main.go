@@ -8,5 +8,5 @@ import (
 
 func main() {
 
-	socket.Client()
+	socket.Client("127.0.0.1:3000")
 }
