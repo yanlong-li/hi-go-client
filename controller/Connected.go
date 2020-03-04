@@ -1,10 +1,10 @@
 package controller
 
 import (
-	"HelloWorld/io/network/connect"
-	"HelloWorld/io/network/route"
-	"HelloWorldServer/packet"
 	"fmt"
+	"github.com/yanlong-li/HelloWorld-GO/io/network/connect"
+	"github.com/yanlong-li/HelloWorld-GO/io/network/route"
+	"github.com/yanlong-li/HelloWorldServer/packet"
 )
 
 func init() {
