@@ -4,11 +4,11 @@ import (
 	"fmt"
 	"github.com/yanlong-li/HelloWorld-GO/io/network/connect"
 	"github.com/yanlong-li/HelloWorld-GO/io/network/route"
-	"github.com/yanlong-li/HelloWorldServer/packet"
+	"github.com/yanlong-li/HelloWorldServer/packetModel"
 )
 
 func init() {
-	route.Register(packet.Connected{}, Connected)
+	route.Register(packetModel.Connected{}, Connected)
 }
 
 func Connected(connector connect.Connector) {
