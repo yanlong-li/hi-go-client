@@ -15,5 +15,5 @@ func init() {
 func Connected(connector connect.Connector) {
 	fmt.Println("新连接", connector.GetId())
 	// 发送心跳
-	connector.Send(gateway.Heartbeat{Sn: 0})
+	_ = connector.Send(gateway.Heartbeat{Sn: 0})
 }

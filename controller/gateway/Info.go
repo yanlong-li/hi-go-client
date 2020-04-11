@@ -1,7 +1,7 @@
 package gateway
 
 import (
-	"fmt"
+	"github.com/yanlong-li/HelloWorld-GO/io/logger"
 	"github.com/yanlong-li/HelloWorld-GO/io/network/connect"
 	"github.com/yanlong-li/HelloWorld-GO/io/network/route"
 	"github.com/yanlong-li/HelloWorldServer/packetModel/gateway"
@@ -13,6 +13,5 @@ func init() {
 
 func Info(info gateway.Info, conn connect.Connector) {
 
-	fmt.Println("收到网关信息")
-	fmt.Println(info)
+	logger.Debug("收到网关信息", 0, info)
 }
