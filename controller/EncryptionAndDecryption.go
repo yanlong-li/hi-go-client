@@ -4,6 +4,7 @@ import (
 	"github.com/ProtonMail/gopenpgp/v2/helper"
 	"github.com/yanlong-li/HelloWorld-GO/io/logger"
 	"github.com/yanlong-li/HelloWorld-GO/io/network/connect"
+	"github.com/yanlong-li/HelloWorld-GO/io/network/packet"
 	"github.com/yanlong-li/HelloWorld-GO/io/network/route"
 	"github.com/yanlong-li/HelloWorld-GO/io/network/stream"
 	"github.com/yanlong-li/HelloWorldServer/packetModel"
@@ -42,7 +43,14 @@ func Decryption(encryptData encrypt.BytesData, conn connect.Connector) {
 	if e != nil {
 		logger.Warning("解密失败", 0, e)
 	}
+	buf := []byte(c)
+	if len(buf) < packet.OpCodeLen+packet.BufLenLen {
+		logger.Warning("解密后的数据无效", 0, buf)
+	}
+	//自行处理粘包和拆包，单个包处理后丢给 conn.HandleData()
 
-	conn.HandleData([]byte(c))
+	//bufLen := buf[:packet.BufLenLen]
+	bufData := buf[packet.BufLenLen:]
+	conn.HandleData(bufData)
 
 }
