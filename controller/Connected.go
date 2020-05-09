@@ -23,6 +23,13 @@ func init() {
 	route.Register(contacts.Blacklist{}, func(list contacts.Blacklist, conn connect.Connector) {
 		logger.Debug("获取黑名单列表成功", 0, list.List)
 	})
+
+	route.Register(contacts.SearchUserSuccess{}, func(info contacts.SearchUserSuccess, conn connect.Connector) {
+		logger.Debug("搜索用户成功", 0, info)
+
+		//申请加为好友
+		conn.Send(contacts.AddContact{Id: info.Id, Remark: "Dev Test Add Contact"})
+	})
 }
 
 func loginSuccess(success Login.Success, conn connect.Connector) {
@@ -35,6 +42,8 @@ func loginSuccess(success Login.Success, conn connect.Connector) {
 	conn.Send(contacts.GetRequestList{})
 	//获取黑名单列表
 	conn.Send(contacts.GetBlacklist{})
+	// 搜索这个账户
+	conn.Send(contacts.SearchUser{Account: "ahlyl94@gmail.com"})
 }
 
 func LoginFail(fail Login.Fail, conn connect.Connector) {
