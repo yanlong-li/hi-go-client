@@ -1,9 +1,9 @@
 package main
 
 import (
-	"github.com/yanlong-li/HelloWorld-GO/io/network/socket"
-	_ "github.com/yanlong-li/HelloWorldClient/controller"
-	_ "github.com/yanlong-li/HelloWorldServer/packetModel"
+	_ "github.com/yanlong-li/hi-go-client/controller"
+	_ "github.com/yanlong-li/hi-go-server/packet_model"
+	"github.com/yanlong-li/hi-go-socket/socket"
 )
 
 func main() {

@@ -2,26 +2,26 @@ package controller
 
 import (
 	"fmt"
-	"github.com/yanlong-li/HelloWorld-GO/io/logger"
-	"github.com/yanlong-li/HelloWorld-GO/io/network/connect"
-	"github.com/yanlong-li/HelloWorld-GO/io/network/route"
-	"github.com/yanlong-li/HelloWorldServer/packetModel"
-	"github.com/yanlong-li/HelloWorldServer/packetModel/gateway"
-	"github.com/yanlong-li/HelloWorldServer/packetModel/user/Login"
-	"github.com/yanlong-li/HelloWorldServer/packetModel/user/contacts"
+	"github.com/yanlong-li/hi-go-logger"
+	"github.com/yanlong-li/hi-go-server/packet_model"
+	"github.com/yanlong-li/hi-go-server/packet_model/gateway"
+	"github.com/yanlong-li/hi-go-server/packet_model/user/Login"
+	"github.com/yanlong-li/hi-go-server/packet_model/user/contacts"
+	"github.com/yanlong-li/hi-go-socket/connect"
+	"github.com/yanlong-li/hi-go-socket/route"
 )
 
 func init() {
-	route.Register(packetModel.Connected{}, Connected)
+	route.Register(packet_model.Connected{}, Connected)
 	route.Register(Login.Success{}, loginSuccess)
 	route.Register(contacts.List{}, func(list contacts.List, conn connect.Connector) {
-		logger.Debug("获取朋友列表成功", 0, list.List)
+		logger.Debug("获取朋友列表成功", 0, list)
 	})
 	route.Register(contacts.RequestList{}, func(list contacts.RequestList, conn connect.Connector) {
-		logger.Debug("获取新朋友列表成功", 0, list.List)
+		logger.Debug("获取新朋友列表成功", 0, list)
 	})
 	route.Register(contacts.Blacklist{}, func(list contacts.Blacklist, conn connect.Connector) {
-		logger.Debug("获取黑名单列表成功", 0, list.List)
+		logger.Debug("获取黑名单列表成功", 0, list)
 	})
 
 	route.Register(contacts.SearchUserSuccess{}, func(info contacts.SearchUserSuccess, conn connect.Connector) {

@@ -1,4 +1,4 @@
-# HelloWorld
+# hi-go-client HiGo 框架客户端
 
 >一个用Go语言开发的，基于兴趣爱好的IM通讯服务框架。
 
@@ -12,10 +12,13 @@
 
    
 ### 项目开发资料
-    https://github.com/Yanlong-LI/HelloWorld-GO
+
+    https://github.com/Yanlong-LI/hi-go-socket
 
 #### 客户端源码地址：
-    https://github.com/Yanlong-LI/HelloWorldClient
+
+    https://github.com/Yanlong-LI/hi-go-client
 
 #### 服务端源码地址：
-    https://github.com/Yanlong-LI/HelloWorldServer
+
+    https://github.com/Yanlong-LI/hi-go-server

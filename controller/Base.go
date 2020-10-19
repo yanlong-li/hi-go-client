@@ -1,5 +1,5 @@
 package controller
 
 import (
-	_ "github.com/yanlong-li/HelloWorldClient/controller/gateway"
+	_ "github.com/yanlong-li/hi-go-client/controller/gateway"
 )

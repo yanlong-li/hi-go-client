@@ -1,18 +1,18 @@
 package controller
 
 import (
-	"github.com/yanlong-li/HelloWorld-GO/io/logger"
-	"github.com/yanlong-li/HelloWorld-GO/io/network/connect"
-	"github.com/yanlong-li/HelloWorld-GO/io/network/packet"
-	"github.com/yanlong-li/HelloWorld-GO/io/network/stream"
-	"github.com/yanlong-li/HelloWorldServer/packetModel/encrypt"
+	"github.com/yanlong-li/hi-go-logger"
+	"github.com/yanlong-li/hi-go-server/packet_model/encrypt"
+	"github.com/yanlong-li/hi-go-socket/connect"
+	"github.com/yanlong-li/hi-go-socket/packet"
+	"github.com/yanlong-li/hi-go-socket/stream"
 )
 
 //加密和解密
 
 func init() {
 
-	//route.Register(packetModel.BeforeSending{}, Encryption)
+	//route.Register(packet_model.BeforeSending{}, Encryption)
 	//route.Register(encrypt.BytesData{}, Decryption)
 }
 
