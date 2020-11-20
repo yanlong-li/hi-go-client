@@ -11,12 +11,24 @@ import (
 )
 
 func main() {
-	logger.SetLevel(logger.ALL)
-
-	go socket.Client(common.GatewayAndClientGroup, "127.0.0.1:3001")
-
+	logger.SetLevel(logger.INFO)
+	test()
 	for {
 		time.Sleep(time.Second * 5)
 		fmt.Println(connect.Count())
 	}
+}
+
+func test() {
+	for i := 0; i < 20000; i++ {
+		go conn()
+	}
+}
+
+func conn() {
+	defer func() {
+		socket.Client(common.GatewayAndClientGroup, "gateway:3001")
+	}()
+
+	socket.Client(common.GatewayAndClientGroup, "gateway:3001")
 }
